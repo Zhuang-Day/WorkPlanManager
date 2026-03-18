@@ -11,6 +11,7 @@ numpy==2.3.1
 openpyxl==3.1.5
 packaging==26.0
 pandas==2.3.1
+psycopg2-binary==2.9.11
 pycryptodome==3.23.0
 python-dateutil==2.9.0.post0
 pytz==2025.2
