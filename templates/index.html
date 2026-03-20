@@ -1,78 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+</head>
+<body>
 
-{% extends "layout.html" %}
-{% block title %}工作管理 - 列表{% endblock %}
+<h2>新增任務</h2>
 
-{% block content %}
-<section class="card">
-  <h2>新增任務</h2>
-  <form method="post">
-    {{ form.hidden_tag() }}
-    <div class="grid">
-      <label>任務標題
-        {{ form.title(class="input") }}
-        {% for e in form.title.errors %}<span class="error">{{ e }}</span>{% endfor %}
-      </label>
+<form action="/add" method="post">
+  <input name="title" placeholder="任務名稱" required><br><br>
 
-      <label>開始時間
-        {{ form.start_at(class="input", type="datetime-local") }}
-        {% for e in form.start_at.errors %}<span class="error">{{ e }}</span>{% endfor %}
-      </label>
+  <textarea name="description" placeholder="描述"></textarea><br><br>
 
-      <label>結束時間
-        {{ form.end_at(class="input", type="datetime-local") }}
-        {% for e in form.end_at.errors %}<span class="error">{{ e }}</span>{% endfor %}
-      </label>
+  <label>狀態</label><br>
+  <select name="status">
+    <option value="todo">待做</option>
+    <option value="doing">進行中</option>
+    <option value="done">完成</option>
+  </select><br><br>
 
-      <label>進度（0-100）
-        {{ form.progress(class="input", type="number", min="0", max="100") }}
-        {% for e in form.progress.errors %}<span class="error">{{ e }}</span>{% endfor %}
-      </label>
-    </div>
-    <div class="actions">
-      {{ form.submit(class="btn") }}
-    </div>
-  </form>
-</section>
+  <label>開始時間</label><br>
+  <input name="start_at" type="datetime-local" required><br><br>
 
-<section class="card">
-  <h2>任務列表</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>標題</th>
-        <th>開始</th>
-        <th>結束</th>
-        <th>進度%</th>
-        <th>動作</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for t in tasks %}
-      <tr>
-        <td>{{ t.id }}</td>
-        <td>{{ t.title }}</td>
-        <td>{{ t.start_at.strftime("%Y-%m-%d %H:%M") }}</td>
-        <td>{{ t.end_at.strftime("%Y-%m-%d %H:%M") }}</td>
-        <td>
-          <form method="post" action="{{ url_for('update_progress', task_id=t.id) }}" class="inline">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <input name="progress" class="input input-sm" type="number" min="0" max="100" value="{{ t.progress }}" />
-            <button class="btn btn-sm" type="submit">更新</button>
-          </form>
-        </td>
-        <td class="nowrap">
-          <a class="btn btn-sm ghost" href="{{ url_for('edit', task_id=t.id) }}">編輯</a>
-          <form method="post" action="{{ url_for('delete', task_id=t.id) }}" class="inline" onsubmit="return confirm('確定刪除這筆任務嗎？');">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <button class="btn btn-sm danger" type="submit">刪除</button>
-          </form>
-        </td>
-      </tr>
-      {% else %}
-      <tr><td colspan="6" class="muted">尚無資料</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</section>
-{% endblock %}
+  <label>結束時間</label><br>
+  <input name="end_at" type="datetime-local" required><br><br>
+
+  <label>進度</label><br>
+  <input name="progress" type="number" min="0" max="100" value="0"><br><br>
+
+  <button type="submit">新增</button>
+</form>
+
+<hr>
+
+<h2>任務列表</h2>
+
+{% for task in tasks %}
+  <div>
+    <h3>{{ task[1] }}</h3>
+    <p>{{ task[2] }}</p>
+
+    <p>狀態：{{ task[3] }}</p>
+    <p>時間：{{ task[4] }} ~ {{ task[5] }}</p>
+    <p>進度：{{ task[6] }}%</p>
+
+    <progress value="{{ task[6] }}" max="100"></progress>
+
+    <form action="/update/{{ task[0] }}" method="post">
+      <input type="number" name="progress" min="0" max="100" value="{{ task[6] }}">
+      <button type="submit">更新進度</button>
+    </form>
+
+    <a href="/delete/{{ task[0] }}">刪除</a>
+
+    <hr>
+  </div>
+{% endfor %}
+
+</body>
+</html>
