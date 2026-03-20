@@ -1,8 +1,5 @@
-
 Flask==3.0.2
-Flask-WTF==1.2.1
-WTForms==3.1.2
 python-dotenv==1.0.1
 psycopg2-binary==2.9.9
-SQLAlchemy==2.0.28
 gunicorn==20.1.0
+setuptools==79.0.1
