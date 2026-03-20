@@ -1,0 +1,48 @@
+
+:root {
+  --bg: #f6f7f9;
+  --card: #fff;
+  --text: #222;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+}
+.container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+h1 { font-size: 24px; margin: 0 0 12px; }
+h2 { font-size: 18px; margin: 0 0 12px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+.input { padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; }
+.input-sm { width: 100px; padding: 6px 8px; }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 10px; border-top: 1px solid var(--border); vertical-align: middle; }
+.table thead th { text-align: left; font-size: 14px; color: var(--muted); }
+.inline { display: inline-flex; gap: 6px; align-items: center; margin: 0; }
+.nowrap { white-space: nowrap; }
+
+.btn { background: var(--primary); color: #fff; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+.btn:hover { filter: brightness(0.95); }
+.btn-sm { padding: 6px 10px; font-size: 14px; }
+.btn.ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+.btn.danger { background: var(--danger); }
+
+.error { color: var(--danger); font-size: 12px; }
+.muted { color: var(--muted); }
+.flash { margin-bottom: 12px; }
+.flash-item { padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border); background: #fff; }
+.flash-item.success { border-color: #16a34a44; background: #16a34a11; }
+.flash-item.info    { border-color: #2563eb44; background: #2563eb11; }
+.flash-item.warning { border-color: #f59e0b44; background: #f59e0b11; }
+.flash-item.danger  { border-color: #dc262644; background: #dc262611; }
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}

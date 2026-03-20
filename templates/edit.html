@@ -1,0 +1,37 @@
+
+{% extends "layout.html" %}
+{% block title %}編輯任務{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h2>編輯任務 #{{ task_id }}</h2>
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <div class="grid">
+      <label>任務標題
+        {{ form.title(class="input") }}
+        {% for e in form.title.errors %}<span class="error">{{ e }}</span>{% endfor %}
+      </label>
+
+      <label>開始時間
+        {{ form.start_at(class="input", type="datetime-local") }}
+        {% for e in form.start_at.errors %}<span class="error">{{ e }}</span>{% endfor %}
+      </label>
+
+      <label>結束時間
+        {{ form.end_at(class="input", type="datetime-local") }}
+        {% for e in form.end_at.errors %}<span class="error">{{ e }}</span>{% endfor %}
+      </label>
+
+      <label>進度（0-100）
+        {{ form.progress(class="input", type="number", min="0", max="100") }}
+        {% for e in form.progress.errors %}<span class="error">{{ e }}</span>{% endfor %}
+      </label>
+    </div>
+    <div class="actions">
+      {{ form.submit(class="btn") }}
+      <a class="btn ghost" href="{{ url_for('index') }}">返回列表</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
