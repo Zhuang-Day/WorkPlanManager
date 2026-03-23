@@ -39,6 +39,30 @@ graph TD
 
 ---
 
+### (一) 如何在 Render 切換部署分支？
+方式一：在 Render Dashboard 切換（最常見、最簡單）
+
+1. 登入 Render Dashboard
+2. 點你的 Web Service
+3. 左側選單選 Settings
+4. 找到 Branch（或 Deploy settings）
+5. 改成你要的分支（例如 dev 或 main）
+6. 點 Save
+7. 點右上角 Manual Deploy → Clear build cache & deploy
+
+這樣 Render 之後就會用你選的那個分支來部署。
+
+### (二) Render 也支援手動部署某個 commit
+路徑: 你的 Service → Manual Deploy → Deploy a specific commit
+
+### (三) 同步vscode分支
+
+```
+#指令
+git fetch
+
+```
+
 ## 四、部署方式
 
 ### (一) 部署方式說明
@@ -127,3 +151,35 @@ git push
 | DB_NAME | postgres |
 | DB_USER | postgres.xtqatnxwxdrycqteqriy |
 | DB_PASSWORD | 密碼 |
+
+## 六、用本機執行專案
+
+**Step 1：建立虛擬環境**
+
+python -m venv .venv
+
+**Step 2：啟動**
+
+Windows: .venv\Scripts\activate
+
+macOS/Linux:source .venv/bin/activate
+
+**Step 3：安裝套件**
+
+pip install -r requirements.txt
+
+**Step 4：啟動 Flask**
+
+python app.py
+
+會看到: Running on http://127.0.0.1:5000
+
+**Step 5：瀏覽器打開**
+
+http://127.0.0.1:5000
+
+**Step 6：退出**
+
+ctrl+c
+
+deactivate
