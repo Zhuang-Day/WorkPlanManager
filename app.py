@@ -1,4 +1,3 @@
-
 import os
 from flask import Flask, render_template, request, redirect
 import psycopg2
@@ -9,11 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+app = Flask(__name__)
 DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     raise RuntimeError("缺少環境變數 DATABASE_URL")
-
-app = Flask(__name__)
 
 
 def get_db():
@@ -32,6 +30,7 @@ def get_db():
 #     )
 #     return conn
 
+
 # 首頁：顯示所有資料
 @app.route("/")
 def home():
@@ -41,6 +40,7 @@ def home():
     notes = cursor.fetchall()
     conn.close()
     return render_template("index.html", notes=notes)
+
 
 # 新增資料
 @app.route("/add", methods=["POST"])
@@ -53,6 +53,7 @@ def add():
     conn.close()
     return redirect("/")
 
+
 # 刪除資料
 @app.route("/delete/<int:id>")
 def delete(id):
@@ -64,9 +65,8 @@ def delete(id):
     return redirect("/")
 
 
-
 if __name__ == "__main__":
-    # 本機開發：預設 5000；Render 部署：使用環境變數 PORT
-    port = int(os.environ.get("PORT", 5000))
+    port = int(
+        os.environ.get("PORT", 5000)
+    )  # 本機用 5000，Render 由 gunicorn 使用 $PORT
     app.run(host="0.0.0.0", port=port, debug=True)
-
