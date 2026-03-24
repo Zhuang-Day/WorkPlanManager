@@ -7,33 +7,43 @@
 
 /* ── CSS Variables ── */
 :root {
-    --bg-base: #f9f9fb;
-    --bg-surface: #ffffff;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f0f3f7;
-    --bg-input: #f5f7fa;
+    /* ── Background ── */
+    --bg-base: #f3ece1;
+    --bg-surface: #fefbf7;
+    --bg-card: #fefbf7;
+    --bg-card-hover: #f7f2e8;
+    --bg-input: #f4eee3;
 
-    --border: rgba(0, 0, 0, 0.08);
-    --border-focus: rgba(99, 102, 241, 0.65);
+    /* ── Border ── */
+    --border: rgba(95, 65, 45, 0.15);
+    --border-focus: rgba(121, 85, 59, 0.6);
 
-    --accent-1: #4f46e5;
-    --accent-2: #6366f1;
-    --accent-hover: #06b6d4;
-    --accent-danger: #f43f5e;
-    --accent-danger2: #e11d48;
+    /* ── Accent (Wood Tone) ── */
+    --accent-1: #8d6748;
+    --accent-2: #a17c5a;
+    --accent-hover: #b28c70;
 
-    --text-primary: #1f1f1f;
-    --text-secondary: #4b4b4b;
-    --text-muted: #7b7b7b;
+    /* Danger（保留暖紅，避免突兀） */
+    --accent-danger: #d9664a;
+    --accent-danger2: #c44c36;
 
+    /* ── Text ── */
+    --text-primary: #3e2c1c;
+    --text-secondary: #5a3e28;
+    --text-muted: #7b5e43;
+
+    /* ── Radius ── */
     --radius-card: 16px;
     --radius-btn: 10px;
     --radius-input: 10px;
 
-    --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
-    --shadow-btn: 0 4px 14px rgba(79, 70, 229, 0.25);
-    --glow-accent: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    /* ── Shadow（暖色陰影） ── */
+    --shadow-card: 0 4px 20px rgba(60, 40, 20, 0.08);
+    --shadow-hover: 0 8px 28px rgba(60, 40, 20, 0.12);
+    --shadow-btn: 0 4px 14px rgba(121, 85, 59, 0.25);
+
+    /* ── Glow ── */
+    --glow-accent: 0 0 0 3px rgba(121, 85, 59, 0.15);
 }
 
 /* ── Reset & Base ── */
@@ -53,9 +63,9 @@ body {
     min-height: 100vh;
     padding: 0;
     background-image:
-        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
-        radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+        radial-gradient(circle at 20% 20%, rgba(160, 120, 80, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(120, 90, 60, 0.06) 0%, transparent 50%),
+        radial-gradient(rgba(80, 60, 40, 0.03) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 28px 28px;
 }
 
@@ -157,7 +167,7 @@ body {
 
 /* sidebar hover */
 .sidebar-link:hover {
-    background: rgba(6, 182, 212, 0.08);
+    background: rgba(178, 140, 112, 0.15);
     color: var(--accent-hover);
 }
 
