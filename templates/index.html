@@ -28,10 +28,10 @@
     </div>
     <nav class="sidebar-nav">
         <a href="/" class="sidebar-link active">
-            <span class="sidebar-icon">📋</span> 工作列表
+            <span class="sidebar-icon"></span> 工作列表
         </a>
         <a href="#" class="sidebar-link">
-            <span class="sidebar-icon">📊</span> 工作進度追蹤
+            <span class="sidebar-icon"></span> 工作進度追蹤
         </a>
     </nav>
 </aside>
@@ -78,7 +78,6 @@
                 <div class="task-title">{{ work_item.title }}</div>
 
                 <div class="task-time">
-                    🕐
                     {{ work_item.start_at.strftime('%Y-%m-%d %H:%M') }}
                     &nbsp;→&nbsp;
                     {{ work_item.end_at.strftime('%Y-%m-%d %H:%M') }}
@@ -110,7 +109,7 @@
                     class="btn btn-danger"
                     onclick="return confirm('確定刪除此工作？')"
                 >
-                    🗑 刪除
+                    刪除
                 </button>
             </form>
 
