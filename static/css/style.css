@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════
-   🌙 DARK PREMIUM THEME
+   🌙 DARK PREMIUM THEME – 優化版
    ══════════════════════════════════════ */
 
 /* ── Google Font (Luxury Feel) ── */
@@ -7,25 +7,23 @@
 
 /* ── CSS Variables ── */
 :root {
-    --bg-base: #0d0f14;
-    --bg-surface: #13161e;
-    --bg-card: #1a1e2a;
-    --bg-card-hover: #1f2433;
-    --bg-input: #0f1117;
+    --bg-base: #16181f;       /* 原 #0d0f14 */
+    --bg-surface: #1c1f28;    /* 原 #13161e */
+    --bg-card: #232635;       /* 原 #1a1e2a */
+    --bg-card-hover: #2a2e40; /* 原 #1f2433 */
+    --bg-input: #1b1e28;      /* 原 #0f1117 */
 
-    --border: rgba(255, 255, 255, 0.07);
-    --border-focus: rgba(139, 92, 246, 0.6);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-focus: rgba(139, 92, 246, 0.65);
 
     --accent-1: #8b5cf6;
-    /* purple */
     --accent-2: #6366f1;
-    /* indigo */
     --accent-danger: #f43f5e;
     --accent-danger2: #e11d48;
 
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #475569;
+    --text-primary: #e6e8f0;   /* 原 #f1f5f9 */
+    --text-secondary: #b0b9d1; /* 原 #94a3b8 */
+    --text-muted: #6b738a;     /* 原 #475569 */
 
     --radius-card: 16px;
     --radius-btn: 10px;
@@ -49,7 +47,7 @@
 body {
     font-family: 'Inter', system-ui, -apple-system,
         "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    background: var(--bg-base);
+    background: linear-gradient(160deg, #16181f 0%, #1c1f28 100%);
     color: var(--text-primary);
     min-height: 100vh;
     padding: 0;
@@ -65,8 +63,6 @@ body {
 /* ══════════════════════════════════════
    SIDEBAR DRAWER
    ══════════════════════════════════════ */
-
-/* 背景遮罩 */
 .sidebar-overlay {
     position: fixed;
     inset: 0;
@@ -83,12 +79,10 @@ body {
     pointer-events: all;
 }
 
-/* 側邊欄本體 */
 .sidebar {
     position: fixed;
     top: 0;
     left: -280px;
-    /* 預設隱藏在左邊 */
     width: 260px;
     height: 100vh;
     background: var(--bg-surface);
@@ -103,10 +97,8 @@ body {
 
 .sidebar.open {
     left: 0;
-    /* 滑出 */
 }
 
-/* Header */
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -143,7 +135,6 @@ body {
     border-color: var(--accent-1);
 }
 
-/* Nav Links */
 .sidebar-nav {
     display: flex;
     flex-direction: column;
@@ -188,7 +179,7 @@ body {
     justify-content: space-between;
     padding: 0 28px;
     height: 64px;
-    background: rgba(19, 22, 30, 0.85);
+    background: rgba(28, 31, 40, 0.85);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -204,6 +195,7 @@ body {
     justify-content: center;
     gap: 5px;
     width: 40px;
+    min-width: 40px;
     height: 40px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -234,13 +226,17 @@ body {
 
 /* Navbar Brand */
 .navbar-brand {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 8px;
+    max-width: calc(100% - 80px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .navbar-brand::before {
@@ -253,7 +249,6 @@ body {
     box-shadow: 0 0 8px rgba(139, 92, 246, 0.8);
 }
 
-/* Navbar Avatar / Right Action */
 .navbar-avatar {
     width: 36px;
     height: 36px;
