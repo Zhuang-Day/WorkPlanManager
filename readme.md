@@ -183,3 +183,52 @@ http://127.0.0.1:5000
 ctrl+c
 
 deactivate
+
+## 七、分支策略
+
+### feature 分支
+- 用途：每個新功能或修正單獨建立分支。
+- 命名規則：`feature/<功能描述>` 或 `bugfix/<修正描述>`。
+- 流程：完成開發後，發 Pull Request 合併到 `dev` 分支。
+
+### dev 分支
+- 用途：整合所有 feature，作為測試環境部署來源。
+- 流程：dev 上的 commit 會觸發 Render 測試環境自動部署。
+- 測試通過後，再整理版本合併到 main。
+
+### main 分支
+- 用途：保持永遠可發佈的穩定版本。
+- 流程：只接受從 dev 合併的版本 commit，並加上版本號 tag。
+- main 分支的 commit 會觸發 Render 正式環境自動部署。
+
+---
+
+## 八、Commit 類型規範
+
+### 功能相關
+- **feat**：新增功能，例如新增 API、UI 元件或模組
+- **refactor**：程式重構，不改變功能行為，但改善結構或可讀性
+- **perf**：效能優化，例如減少 API 呼叫、加快渲染速度
+- **style**：程式格式調整、排版或修正縮排，不影響功能
+
+### 修正相關
+- **fix**：修正 bug 或錯誤行為
+- **test**：新增或修改測試用例，確保功能正確
+- **chore**：其他雜項，如更新依賴、CI 設定或自動化腳本
+
+### 文件與說明
+- **docs**：修改或新增文件，例如 README、API 文件、注釋
+- **build**：編譯或建置相關變動，例如打包設定、Dockerfile
+- **config**：環境或設定檔修改，例如 dev/prod 設定
+
+---
+
+## 九、Commit 訊息範例
+```bash
+feat(auth): add login API
+fix(ui): correct button style
+refactor(user): split user module into submodules
+perf(api): reduce duplicate database queries
+docs(readme): update deployment process
+chore(deps): upgrade express version
+test(auth): add login unit tests
