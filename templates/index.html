@@ -1,5 +1,8 @@
-{% block content %}
+{% extends "base.html" %}
 
+{% block title %}工作管理{% endblock %}
+
+{% block content %}
 <div class="page-title">工作管理</div>
 <div class="page-subtitle">管理您的所有待辦工作與進度</div>
 
@@ -18,37 +21,32 @@
     </button>
 </form>
 
-{% if work_list %}
 <ul class="task-list">
-    {% for work_item in work_list %}
+    {% for task in work_list %}
     <li class="task-item">
         <div class="task-content">
-            <div class="task-title">{{ work_item.title }}</div>
+            <div class="task-title">{{ task.title }}</div>
             <div class="task-time">
-                {{ work_item.start_at.strftime('%Y-%m-%d %H:%M') }}
-                →
-                {{ work_item.end_at.strftime('%Y-%m-%d %H:%M') }}
+                {{ task.start_at }} → {{ task.end_at }}
             </div>
 
             <div class="task-progress">
                 <div class="progress-label">
                     <span>進度</span>
-                    <span>{{ work_item.progress | default(0) }}%</span>
+                    <span>{{ task.progress }}%</span>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar" style="width: {{ work_item.progress | default(0) }}%;"></div>
+                    <div class="progress-bar" style="width: {{ task.progress }}%;"></div>
                 </div>
             </div>
         </div>
 
-        <form action="/delete/{{ work_item.id }}" method="POST" class="delete-form">
+        <form action="/delete/{{ task.id }}" method="POST" class="delete-form">
             <button type="submit" class="btn btn-danger">刪除</button>
         </form>
     </li>
+    {% else %}
+    <div class="empty-msg">目前沒有任何工作</div>
     {% endfor %}
 </ul>
-{% else %}
-<p class="empty-msg">目前沒有工作</p>
-{% endif %}
-
 {% endblock %}
