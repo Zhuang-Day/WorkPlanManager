@@ -16,6 +16,13 @@
 
     {% block content %}{% endblock %}
 
+    {# 錯誤訊息 #}
+    {% if error %}
+    <script>
+        alert("{{ error }}");
+    </script>
+    {% endif %}
+
     <!-- CSRF token 給 JS 用 -->
     <script>
         window.CSRF_TOKEN = "{{ session.csrf_token }}";

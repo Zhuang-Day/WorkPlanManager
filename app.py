@@ -1,6 +1,8 @@
+from unittest import result
+
 from flask import Flask, render_template, request, redirect
 from psycopg2 import Error
-from datetime import datetime
+from datetime import datetime, timezone
 from flask import session
 import secrets
 import psycopg2
@@ -53,13 +55,16 @@ def task_list():
     cursor.close()
     conn.close()
 
-    now = datetime.now()
+    now = datetime.now(timezone.utc)
 
     result = []
     for item in work_list:
         start = item["start_at"]
         end = item["end_at"]
-
+        if start.tzinfo is None:
+            start = start.replace(tzinfo=timezone.utc)
+        if end.tzinfo is None:
+            end = end.replace(tzinfo=timezone.utc)
         if now <= start:
             progress = 0
         elif now >= end:
@@ -73,7 +78,8 @@ def task_list():
         item["progress"] = max(0, min(100, progress))
         result.append(item)
 
-    return render_template("index.html", work_list=result)
+    error = session.pop("error", None)
+    return render_template("index.html", work_list=result, error=error)
 
 
 # 新增資料
@@ -81,18 +87,26 @@ def task_list():
 def add():
     if not validate_csrf():
         return "CSRF 驗證失敗", 403
+        
 
     title = request.form.get("title")
     if not title:
-        return "title 不可為空", 400
+        session["error"] = "title 不可為空"
+        return redirect("/")
     try:
-        start_at = datetime.fromisoformat(request.form.get("start_at"))
-        end_at = datetime.fromisoformat(request.form.get("end_at"))
+        start_at = datetime.fromisoformat(request.form.get("start_at")).replace(
+            tzinfo=timezone.utc
+        )
+        end_at = datetime.fromisoformat(request.form.get("end_at")).replace(
+            tzinfo=timezone.utc
+        )
     except Exception:
-        return "時間格式錯誤", 400
+        session["error"] = "時間格式錯誤"
+        return redirect("/")
 
     if end_at <= start_at:
-        return "結束時間必須晚於開始時間", 400
+        session["error"] = "結束時間必須晚於開始時間"
+        return redirect("/")
     conn, cursor = get_cursor()
     try:
         cursor.execute(

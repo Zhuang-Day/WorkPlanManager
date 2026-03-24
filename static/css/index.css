@@ -1,0 +1,151 @@
+/* ── Base ── */
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+                 "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: #f9fafb;
+    color: #111827;
+    padding: 24px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ── Form ── */
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+}
+
+.task-form input[type="text"],
+.task-form input[type="datetime-local"] {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.task-form input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.datetime-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* ── Buttons ── */
+.btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(37,99,235,0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(37,99,235,0.35);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(220,38,38,0.25);
+}
+
+.btn-danger:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(220,38,38,0.35);
+}
+
+/* ── Task List ── */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.task-time {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.task-progress .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.progress {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px 0;
+}
+
+/* ── Delete Button Form ── */
+.delete-form {
+    margin: 0;
+    align-self: center;
+}
