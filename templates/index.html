@@ -3,36 +3,84 @@
 {% block title %}首頁{% endblock %}
 
 {% block content %}
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+    <!-- 漢堡選單 -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span>工作列表</span>
+        <span>工作進度追蹤</span>
+    </button>
+
+    <!-- Brand -->
+    <div class="navbar-brand">Task Manager</div>
+
+    <!-- 右側頭像 -->
+    <div class="navbar-avatar">YO</div>
+</nav>
+
+<!-- ══ 側邊抽屜選單（可選）══ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="sidebar-title">選單</span>
+        <button class="sidebar-close" onclick="toggleMenu()">✕</button>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/" class="sidebar-link active">
+            <span class="sidebar-icon">📋</span> 工作列表
+        </a>
+        <a href="#" class="sidebar-link">
+            <span class="sidebar-icon">📊</span> 工作進度追蹤
+        </a>
+    </nav>
+</aside>
+
+<!-- ══ MAIN CONTAINER ══ -->
 <div class="container">
-    <h1 class="mb-4">首頁</h1>
 
-    <form action="/add" method="POST" class="mb-4">
-        <div class="mb-2">
-            <input type="text" name="title" class="form-control" placeholder="工作名稱" required>
+    <!-- 頁面標題 -->
+    <div class="page-title">工作管理</div>
+    <div class="page-subtitle">管理您的所有待辦工作與進度</div>
+
+    <!-- ══ 新增工作表單卡片 ══ -->
+    <form action="/add" method="POST" class="task-form">
+
+        <div class="form-label">工作名稱</div>
+        <input
+            type="text"
+            name="title"
+            placeholder="輸入工作名稱..."
+            required
+        >
+
+        <div class="form-label">時間區間</div>
+        <div class="datetime-row">
+            <input type="datetime-local" name="start_at" required>
+            <input type="datetime-local" name="end_at" required>
         </div>
 
-        <div class="row datetime-row">
-            <div class="col">
-                <input type="datetime-local" name="start_at" class="form-control" required>
-            </div>
-            <div class="col">
-                <input type="datetime-local" name="end_at" class="form-control" required>
-            </div>
-        </div>
+        <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 4px;">
+            ＋ 新增工作
+        </button>
 
-        <button type="submit" class="btn btn-primary w-100">新增工作</button>
     </form>
 
-    <!-- 工作列表 -->
+    <!-- ══ 工作列表 ══ -->
     {% if work_list %}
     <ul class="task-list">
         {% for work_item in work_list %}
         <li class="task-item">
-            <div class="task-info">
+
+            <!-- 左側：工作資訊 -->
+            <div class="task-content">
+
                 <div class="task-title">{{ work_item.title }}</div>
+
                 <div class="task-time">
+                    🕐
                     {{ work_item.start_at.strftime('%Y-%m-%d %H:%M') }}
-                    ~
+                    &nbsp;→&nbsp;
                     {{ work_item.end_at.strftime('%Y-%m-%d %H:%M') }}
                 </div>
 
@@ -42,21 +90,55 @@
                         <span>{{ work_item.progress | default(0) }}%</span>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar" style="width: {{ work_item.progress | default(0) }}%;"></div>
+                        <div
+                            class="progress-bar"
+                            style="width: {{ work_item.progress | default(0) }}%;"
+                        ></div>
                     </div>
                 </div>
+
             </div>
 
-            <form action="/delete/{{ work_item.id }}" method="POST" class="delete-form">
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('確定刪除？')">
-                    刪除
+            <!-- 右側：刪除按鈕 -->
+            <form
+                action="/delete/{{ work_item.id }}"
+                method="POST"
+                class="delete-form"
+            >
+                <button
+                    type="submit"
+                    class="btn btn-danger"
+                    onclick="return confirm('確定刪除此工作？')"
+                >
+                    🗑 刪除
                 </button>
             </form>
+
         </li>
         {% endfor %}
     </ul>
+
     {% else %}
     <p class="empty-msg">目前沒有工作</p>
     {% endif %}
+
 </div>
+
+<!-- ══ SCRIPT：漢堡選單開關 ══ -->
+<script>
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const isOpen  = sidebar.classList.contains('open');
+
+    if (isOpen) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    } else {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
+    }
+}
+</script>
+
 {% endblock %}
