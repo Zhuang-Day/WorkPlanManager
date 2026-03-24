@@ -17,7 +17,7 @@
     <div class="navbar-avatar">YO</div>
 </nav>
 
-<!-- ══ 側邊抽屜選單（可選）══ -->
+<!-- ══ 側邊抽屜選單 ══ -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -25,12 +25,8 @@
         <button class="sidebar-close" onclick="toggleMenu()">✕</button>
     </div>
     <nav class="sidebar-nav">
-        <a href="/" class="sidebar-link active">
-            <span class="sidebar-icon"></span> 工作列表
-        </a>
-        <a href="#" class="sidebar-link">
-            <span class="sidebar-icon"></span> 工作進度追蹤
-        </a>
+        <a href="/" class="sidebar-link active">工作列表</a>
+        <a href="#" class="sidebar-link">工作進度追蹤</a>
     </nav>
 </aside>
 
@@ -58,7 +54,7 @@
             <input type="datetime-local" name="end_at" required>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="align-self: flex-start; margin-top: 4px;">
+        <button type="submit" class="btn btn-primary btn-align-start">
             ＋ 新增工作
         </button>
 
@@ -72,15 +68,12 @@
 
             <!-- 左側：工作資訊 -->
             <div class="task-content">
-
                 <div class="task-title">{{ work_item.title }}</div>
-
                 <div class="task-time">
                     {{ work_item.start_at.strftime('%Y-%m-%d %H:%M') }}
                     &nbsp;→&nbsp;
                     {{ work_item.end_at.strftime('%Y-%m-%d %H:%M') }}
                 </div>
-
                 <div class="task-progress">
                     <div class="progress-label">
                         <span>進度</span>
@@ -93,7 +86,6 @@
                         ></div>
                     </div>
                 </div>
-
             </div>
 
             <!-- 右側：刪除按鈕 -->
