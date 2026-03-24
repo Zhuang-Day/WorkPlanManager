@@ -198,7 +198,6 @@ body {
     top: 0;
     z-index: 100;
 }
-
 /* Hamburger Button */
 .hamburger {
     display: flex;
@@ -235,19 +234,13 @@ body {
     background: var(--accent-1);
 }
 
-/* Navbar Brand */
+
+
 .navbar-brand {
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    max-width: calc(100% - 80px);
+    flex: 1 1 auto; /* 自動佔用剩餘空間 */
+    min-width: 0;   /* 避免 flex shrink 被限制 */
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: ellipsis; /* 仍可截斷，但比 max-width 寬 */
 }
 
 .navbar-brand::before {
