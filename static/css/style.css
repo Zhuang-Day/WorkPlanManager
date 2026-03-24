@@ -286,11 +286,11 @@ body {
    LAYOUT CONTAINER
    ══════════════════════════════════════ */
 .container {
-    width: 90%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 32px 24px;
-    transition: margin 0.3s ease;
+    width: 100%;
+    max-width: 1100px;   /* 收窄一點，視覺更集中 */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 20px;
 }
 
 /* 側邊欄展開時，容器右移 (大螢幕) */
@@ -311,7 +311,8 @@ body {
 @media (max-width: 600px) {
     .container {
         width: 95%;
-        margin-left: 0;
+        margin-left: auto;
+        margin-right: auto;
         padding: 20px 16px;
     }
 }
