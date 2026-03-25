@@ -154,6 +154,9 @@ git push
 
 ## 六、用本機執行專案
 
+可以建立，也可以不建立。
+建立可避免該專案套件版本與其他專案不同，因此影響到其他專案。
+
 **Step 1：建立虛擬環境**
 
 python -m venv .venv
@@ -169,6 +172,8 @@ macOS/Linux:source .venv/bin/activate
 pip install -r requirements.txt
 
 **Step 4：啟動 Flask**
+
+可以不建立上面的虛擬環境，直接至該專案根目錄直接執行以下程式
 
 python app.py
 
