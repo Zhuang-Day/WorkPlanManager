@@ -1,33 +1,52 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工作管理網站</title>
-    <!-- Bootstrap 美化 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="container mt-5">
+{% extends "base.html" %}
 
-    <h1 class="mb-4">工作管理</h1>
+{% block title %}工作管理{% endblock %}
 
-    <!-- 新增表單 -->
-    <form action="/add" method="POST" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="content" class="form-control" placeholder="輸入筆記內容..." required>
-            <button type="submit" class="btn btn-primary">新增</button>
+{% block content %}
+<div class="page-title">工作管理</div>
+<div class="page-subtitle">管理您的所有待辦工作與進度</div>
+
+<form action="/add" method="POST" class="task-form">
+    <div class="form-label">工作名稱</div>
+    <input type="text" name="title" placeholder="輸入工作名稱..." required>
+
+    <div class="form-label">時間區間</div>
+    <div class="datetime-row">
+        <input type="datetime-local" name="start_at" required>
+        <input type="datetime-local" name="end_at" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        ＋ 新增工作
+    </button>
+</form>
+
+<ul class="task-list">
+    {% for task in work_list %}
+    <li class="task-item">
+        <div class="task-content">
+            <div class="task-title">{{ task.title }}</div>
+            <div class="task-time">
+                {{ task.start_at }} → {{ task.end_at }}
+            </div>
+
+            <div class="task-progress">
+                <div class="progress-label">
+                    <span>進度</span>
+                    <span>{{ task.progress }}%</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" style="width: {{ task.progress }}%;"></div>
+                </div>
+            </div>
         </div>
-    </form>
 
-    <!-- 顯示所有筆記 -->
-    <ul class="list-group">
-        {% for note in notes %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ note[1] }}
-            <a href="/delete/{{ note[0] }}" class="btn btn-danger btn-sm">刪除</a>
-        </li>
-        {% endfor %}
-    </ul>
-
-</body>
-</html>
+        <form action="/delete/{{ task.id }}" method="POST" class="delete-form">
+            <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
+    </li>
+    {% else %}
+    <div class="empty-msg">目前沒有任何工作</div>
+    {% endfor %}
+</ul>
+{% endblock %}

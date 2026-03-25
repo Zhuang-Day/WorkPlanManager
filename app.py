@@ -1,50 +1,19 @@
-from flask import Flask, render_template, request, redirect
-import psycopg2
+from flask import Flask, session
+from routes import index_bp, progress_bp, weekly_bp, auth_bp
+from utils.csrf import set_csrf_token
 import os
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-key")
 
-# 連接資料庫
-def get_db():
-    conn = psycopg2.connect(
-        host=os.environ.get("DB_HOST"),
-        database=os.environ.get("DB_NAME"),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-        port=5432
-    )
-    return conn
+@app.before_request
+def before_request():
+    set_csrf_token()
 
-# 首頁：顯示所有資料
-@app.route("/")
-def home():
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM notes;")
-    notes = cursor.fetchall()
-    conn.close()
-    return render_template("index.html", notes=notes)
-
-# 新增資料
-@app.route("/add", methods=["POST"])
-def add():
-    content = request.form.get("content")
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO notes (content) VALUES (%s);", (content,))
-    conn.commit()
-    conn.close()
-    return redirect("/")
-
-# 刪除資料
-@app.route("/delete/<int:id>")
-def delete(id):
-    conn = get_db()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM notes WHERE id = %s;", (id,))
-    conn.commit()
-    conn.close()
-    return redirect("/")
+app.register_blueprint(index_bp)
+app.register_blueprint(progress_bp)
+app.register_blueprint(weekly_bp, url_prefix="/weekly")
+app.register_blueprint(auth_bp, url_prefix="/auth")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

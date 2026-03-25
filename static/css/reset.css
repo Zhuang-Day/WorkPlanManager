@@ -1,0 +1,24 @@
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system,
+        "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: linear-gradient(160deg, #f9f9f9 0%, #ffffff 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(160, 120, 80, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(120, 90, 60, 0.06) 0%, transparent 50%),
+        radial-gradient(rgba(80, 60, 40, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    display: flex;
+    flex-direction: column;
+}

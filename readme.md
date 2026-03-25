@@ -39,6 +39,30 @@ graph TD
 
 ---
 
+### (一) 如何在 Render 切換部署分支？
+方式一：在 Render Dashboard 切換（最常見、最簡單）
+
+1. 登入 Render Dashboard
+2. 點你的 Web Service
+3. 左側選單選 Settings
+4. 找到 Branch（或 Deploy settings）
+5. 改成你要的分支（例如 dev 或 main）
+6. 點 Save
+7. 點右上角 Manual Deploy → Clear build cache & deploy
+
+這樣 Render 之後就會用你選的那個分支來部署。
+
+### (二) Render 也支援手動部署某個 commit
+路徑: 你的 Service → Manual Deploy → Deploy a specific commit
+
+### (三) 同步vscode分支
+
+```
+#指令
+git fetch
+
+```
+
 ## 四、部署方式
 
 ### (一) 部署方式說明
@@ -127,3 +151,89 @@ git push
 | DB_NAME | postgres |
 | DB_USER | postgres.xtqatnxwxdrycqteqriy |
 | DB_PASSWORD | 密碼 |
+
+## 六、用本機執行專案
+
+可以建立，也可以不建立。
+建立可避免該專案套件版本與其他專案不同，因此影響到其他專案。
+
+**Step 1：建立虛擬環境**
+
+python -m venv .venv
+
+**Step 2：啟動**
+
+Windows: .venv\Scripts\activate
+
+macOS/Linux:source .venv/bin/activate
+
+**Step 3：安裝套件**
+
+pip install -r requirements.txt
+
+**Step 4：啟動 Flask**
+
+可以不建立上面的虛擬環境，直接至該專案根目錄直接執行以下程式
+
+python app.py
+
+會看到: Running on http://127.0.0.1:5000
+
+**Step 5：瀏覽器打開**
+
+http://127.0.0.1:5000
+
+**Step 6：退出**
+
+ctrl+c
+
+deactivate
+
+## 七、分支策略
+
+### feature 分支
+- 用途：每個新功能或修正單獨建立分支。
+- 命名規則：`feature/<功能描述>` 或 `bugfix/<修正描述>`。
+- 流程：完成開發後，發 Pull Request 合併到 `dev` 分支。
+
+### dev 分支
+- 用途：整合所有 feature，作為測試環境部署來源。
+- 流程：dev 上的 commit 會觸發 Render 測試環境自動部署。
+- 測試通過後，再整理版本合併到 main。
+
+### main 分支
+- 用途：保持永遠可發佈的穩定版本。
+- 流程：只接受從 dev 合併的版本 commit，並加上版本號 tag。
+- main 分支的 commit 會觸發 Render 正式環境自動部署。
+
+---
+
+## 八、Commit 類型規範
+
+### 功能相關
+- **feat**：新增功能，例如新增 API、UI 元件或模組
+- **refactor**：程式重構，不改變功能行為，但改善結構或可讀性
+- **perf**：效能優化，例如減少 API 呼叫、加快渲染速度
+- **style**：程式格式調整、排版或修正縮排，不影響功能
+
+### 修正相關
+- **fix**：修正 bug 或錯誤行為
+- **test**：新增或修改測試用例，確保功能正確
+- **chore**：其他雜項，如更新依賴、CI 設定或自動化腳本
+
+### 文件與說明
+- **docs**：修改或新增文件，例如 README、API 文件、注釋
+- **build**：編譯或建置相關變動，例如打包設定、Dockerfile
+- **config**：環境或設定檔修改，例如 dev/prod 設定
+
+---
+
+## 九、Commit 訊息範例
+```bash
+feat(auth): add login API
+fix(ui): correct button style
+refactor(user): split user module into submodules
+perf(api): reduce duplicate database queries
+docs(readme): update deployment process
+chore(deps): upgrade express version
+test(auth): add login unit tests
