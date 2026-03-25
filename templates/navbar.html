@@ -6,5 +6,13 @@
             <span></span>
         </button>
     </div>
+    <!-- 中間：Logo -->
+    <div class="navbar-center">
+        <a href="{{ url_for('index.task_list') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                 alt="Logo" 
+                 class="navbar-logo">
+        </a>
+    </div>
     <div class="navbar-avatar">YO</div>
 </nav>

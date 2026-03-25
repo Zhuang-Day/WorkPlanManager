@@ -1,0 +1,93 @@
+/* ── CSS Variables ── */
+:root {
+    /* ── Background ── */
+    --bg-base: #f3ece1;
+    --bg-surface: #fefbf7;
+    --bg-card: #fefbf7;
+    --bg-card-hover: #f7f2e8;
+    --bg-input: #f4eee3;
+
+    /* ── Border ── */
+    --border: rgba(95, 65, 45, 0.15);
+    --border-focus: rgba(121, 85, 59, 0.6);
+
+    /* ── Accent (Wood Tone) ── */
+    --accent-1: #8d6748;
+    --accent-2: #a17c5a;
+    --accent-hover: #b28c70;
+
+    /* Danger（保留暖紅，避免突兀） */
+    --accent-danger: #d9664a;
+    --accent-danger2: #c44c36;
+
+    /* ── Text ── */
+    --text-primary: #3e2c1c;
+    --text-secondary: #5a3e28;
+    --text-muted: #7b5e43;
+
+    /* ── Radius ── */
+    --radius-card: 16px;
+    --radius-btn: 10px;
+    --radius-input: 10px;
+
+    /* ── Shadow（暖色陰影） ── */
+    --shadow-card: 0 4px 20px rgba(60, 40, 20, 0.08);
+    --shadow-hover: 0 8px 28px rgba(60, 40, 20, 0.12);
+    --shadow-btn: 0 4px 14px rgba(121, 85, 59, 0.25);
+
+    /* ── Glow ── */
+    --glow-accent: 0 0 0 3px rgba(121, 85, 59, 0.15);
+}
+
+.page-title {
+    font-size: 1.75rem;
+    /* 主標題大小 */
+    font-weight: 700;
+    /* 加粗，與任務標題對應 */
+    color: var(--text-primary);
+    /* 主文字色 */
+    margin-bottom: 8px;
+    /* 與副標間距 */
+    line-height: 1.2;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    /* 副標題大小 */
+    font-weight: 500;
+    /* 中等字重 */
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    /* 與下方內容間距 */
+    line-height: 1.4;
+}
+
+
+.empty-msg {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 48px 0;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.empty-msg::before {
+    content: '📭';
+    font-size: 2.5rem;
+    opacity: 0.5;
+}
+
+.logo-credit {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.logo-credit a {
+  color: #888;
+  text-decoration: underline;
+}
