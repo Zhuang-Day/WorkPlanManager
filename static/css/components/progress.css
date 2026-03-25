@@ -1,0 +1,118 @@
+/* ══════════════════════════════════════
+   TASK PROGRESS & CONTROLS
+   ────────────────────────────────────── */
+
+/* 進度區容器 */
+.task-progress {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+/* 進度標籤與數值 */
+.task-progress .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* 進度條與滑桿容器 */
+.progress-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 數字輸入框 */
+.progress-number-input {
+    width: 80px;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.progress-number-input:focus {
+    border-color: #f6eecb;
+}
+
+/* 去掉數字框原生上下按鈕 */
+.progress-number-input::-webkit-inner-spin-button,
+.progress-number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.progress-number-input::-moz-inner-spin-button {
+    -moz-appearance: none;
+}
+
+/* 滑桿樣式 */
+.progress-slider {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.06);
+    outline: none;
+    transition: background 0.2s;
+}
+
+.progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    cursor: pointer;
+    border: none;
+    margin-top: -5px;
+    transition: background 0.2s;
+}
+
+.progress-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-1);
+    cursor: pointer;
+    border: none;
+}
+
+/* 進度條容器 */
+.progress {
+    height: 5px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 99px;
+    overflow: hidden;
+    min-width: 160px;
+    margin-bottom: 8px;
+}
+
+/* 進度填充條 */
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.15);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 按鈕間距 */
+.task-progress .task-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* 表單元素避免縮放 */
+.form-action {
+    margin: 0;
+    flex-shrink: 0;
+}

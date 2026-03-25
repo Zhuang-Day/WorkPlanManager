@@ -20,33 +20,55 @@
         ＋ 新增工作
     </button>
 </form>
+<div class="task-container">
+    <!-- 代辦欄 -->
+    <div class="task-column">
+        <h3 class="task-label">代辦</h3>
+        <ul class="task-list">
+            {% set todo_total = (todo_list or []) + (pending_list or []) %}
+            {% if todo_total %}
+            {% for task in todo_total %}
+            {% include "task_card.html" %}
+            {% endfor %}
+            {% else %}
+            <li class="empty-msg">目前沒有任何工作</li>
+            {% endif %}
+        </ul>
+    </div>
 
-<ul class="task-list">
-    {% for task in work_list %}
-    <li class="task-item">
-        <div class="task-content">
-            <div class="task-title">{{ task.title }}</div>
-            <div class="task-time">
-                {{ task.start_at }} → {{ task.end_at }}
-            </div>
+    <!-- 進行中欄 -->
+    <div class="task-column">
+        <h3 class="task-label">進行中</h3>
+        <ul class="task-list">
+            {% set doing_list_safe = doing_list or [] %}
+            {% if doing_list_safe %}
+            {% for task in doing_list_safe %}
+            {% include "task_card.html" %}
+            {% endfor %}
+            {% else %}
+            <li class="empty-msg">目前沒有任何工作</li>
+            {% endif %}
+        </ul>
+    </div>
 
-            <div class="task-progress">
-                <div class="progress-label">
-                    <span>進度</span>
-                    <span>{{ task.progress }}%</span>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" style="width: {{ task.progress }}%;"></div>
-                </div>
-            </div>
-        </div>
+    <!-- 已完成欄 -->
+    <div class="task-column">
+        <h3 class="task-label">已完成</h3>
+        <ul class="task-list">
+            {% if done_list %}
+            {% for task in done_list %}
+            {% include "task_card.html" %}
+            {% endfor %}
+            {% else %}
+            <li class="empty-msg">目前沒有任何工作</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<!-- 側邊欄容器，動態插入 -->
+<div id="sidebar-container"></div>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-        <form action="/delete/{{ task.id }}" method="POST" class="delete-form">
-            <button type="submit" class="btn btn-danger">刪除</button>
-        </form>
-    </li>
-    {% else %}
-    <div class="empty-msg">目前沒有任何工作</div>
-    {% endfor %}
-</ul>
+<script src="{{ url_for('static', filename='js/task_card.js') }}"></script>
+<script src="{{ url_for('static', filename='js/task_sidebar.js') }}"></script>
 {% endblock %}
