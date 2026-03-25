@@ -60,12 +60,3 @@
 .datetime-row input {
     flex: 1;
 }
-
-.form-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-}

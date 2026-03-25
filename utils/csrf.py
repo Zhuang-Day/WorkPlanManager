@@ -1,9 +1,12 @@
 from flask import session, request
 import secrets
 
+
 def set_csrf_token():
     if "csrf_token" not in session:
         session["csrf_token"] = secrets.token_hex(16)
+        print(session.get("csrf_token"))
+
 
 def validate_csrf():
     token = request.form.get("csrf_token")

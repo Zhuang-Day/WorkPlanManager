@@ -1,0 +1,31 @@
+<li id="task-{{ task.id }}" class="task-item" data-id="{{ task.id }}" data-title="{{ task.title }}"
+    data-start="{{ task.start_at.strftime('%Y-%m-%d') }}" data-end="{{ task.end_at.strftime('%Y-%m-%d') }}"
+    data-progress="{{ task.progress }}" data-status="{{ task.status }}"
+    data-description="{{ task.description|default('') }}">
+
+    <div class="task-content">
+        <!-- 右上角狀態標籤 -->
+        <span class="status-badge {{ task.status }}">{{ task.status|capitalize }}</span>
+        <div class="card-title">{{ task.title }}</div>
+        <div class="date-title">{{ task.start_at.strftime('%Y-%m-%d') }} - {{ task.end_at.strftime('%Y-%m-%d') }}</div>
+
+        <div class="task-progress">
+            <div class="progress-label"><span>進度</span></div>
+
+            <div class="progress-wrapper" style="display: flex; align-items: center; gap: 8px;">
+                <div class="progress" style="flex: 1;">
+                    <div class="progress-bar" style="width: {{ task.progress }}%;"></div>
+                </div>
+                <span class="progress-value">{{ task.progress }}%</span>
+            </div>
+
+            <div class="task-buttons">
+                <button type="button" class="btn btn-primary btn-sm open-sidebar-btn">更新</button>
+                <form action="/delete/{{ task.id }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+                    <button type="submit" class="btn btn-danger btn-sm">刪除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</li>
