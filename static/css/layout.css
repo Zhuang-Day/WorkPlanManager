@@ -25,6 +25,14 @@
     }
 }
 
+/* 平板版外框縮小 */
+@media (max-width: 1024px) {
+    .status-badge {
+        padding: 1.5px 6px;
+        border-radius: 10px;
+    }
+}
+
 /* 小螢幕自動置中 */
 @media (max-width: 600px) {
     .container {
@@ -36,6 +44,11 @@
 
     .task-container {
         grid-template-columns: 1fr;
+    }
+
+    .status-badge {
+        padding: 1px 5px;
+        border-radius: 8px;
     }
 }
 
