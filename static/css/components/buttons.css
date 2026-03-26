@@ -16,15 +16,15 @@
 /* 主按鈕：暖木色漸層 */
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 4px 12px rgba(121,85,59,0.15), inset 0 -1px 0 rgba(255,255,255,0.1);
+    color: var(--text-btn);
+    /* 統一文字顏色 */
+    box-shadow: var(--shadow-btn);
 }
 
-/* 危險按鈕：暖紅色 */
 .btn-danger {
     background: linear-gradient(135deg, var(--accent-danger), var(--accent-danger2));
-    color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 4px 12px rgba(196,76,54,0.15), inset 0 -1px 0 rgba(255,255,255,0.08);
+    color: var(--text-btn);
+    box-shadow: var(--shadow-btn);
 }
 
 /* 幽靈按鈕：透明 + 暖木色 hover */
@@ -37,7 +37,8 @@
 .btn-ghost:hover {
     border-color: var(--accent-hover);
     color: var(--accent-hover);
-    background: rgba(178,140,112,0.08); /* 暖木色半透明背景 */
+    background: var(--accent-1-08);
+    /* 使用透明暖木色 */
 }
 
 /* hover / active 統一效果 */
@@ -59,6 +60,50 @@
 /* 按鈕容器 */
 .task-buttons {
     display: flex;
-    align-items: center; /* 垂直置中按鈕 */
-    gap: 8px; /* 按鈕間距 */
+    align-items: center;
+    /* 垂直置中按鈕 */
+    gap: 8px;
+    /* 按鈕間距 */
+}
+
+/* 首頁狀態按鈕樣式 */
+/* 隱藏原本 radio */
+.status-group input[type="radio"] {
+    display: none;
+}
+
+/* 未選中（預設狀態） */
+.status-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-right: 8px;
+
+    background-color: var(--gray-bg);
+    color: var(--gray-text);
+    border: 1px solid var(--gray-border);
+    /* 加一點邊界 */
+    transition: all 0.2s ease;
+}
+
+/* hover（稍微亮一點，但不等於選中） */
+.status-btn:hover {
+    background-color: var(--gray-bg);
+    color: var(--gray-text);
+}
+
+/* Todo 選中 */
+.status-group input:checked+.status-btn.todo {
+    background-color: var(--status-todo);
+    color: white;
+    border: none;
+}
+
+/* Doing 選中 */
+.status-group input:checked+.status-btn.doing {
+    background-color: var(--status-doing);
+    color: white;
+    border: none;
 }

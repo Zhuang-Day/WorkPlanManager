@@ -10,6 +10,15 @@
     <div class="form-label">工作名稱</div>
     <input type="text" name="title" placeholder="輸入工作名稱..." required>
 
+    <div class="form-label">狀態</div>
+    <div class="status-group">
+        <input type="radio" id="status-todo" name="status" value="todo" checked>
+        <label for="status-todo" class="status-btn todo">Todo</label>
+
+        <input type="radio" id="status-doing" name="status" value="doing">
+        <label for="status-doing" class="status-btn doing">Doing</label>
+    </div>
+    
     <div class="form-label">時間區間</div>
     <div class="datetime-row">
         <input type="datetime-local" name="start_at" required>

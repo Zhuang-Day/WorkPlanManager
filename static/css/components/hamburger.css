@@ -18,8 +18,8 @@
 
 .hamburger:hover {
     background: var(--bg-card-hover);
-    border-color: rgba(139, 92, 246, 0.25);
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
+    border-color: var(--border);
+    box-shadow: 0 0 12px var(--shadow-btn);
 }
 
 .hamburger span {
