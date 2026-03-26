@@ -24,7 +24,8 @@
 
 /* ── Inputs ── */
 .task-form input[type="text"],
-.task-form input[type="datetime-local"] {
+.task-form input[type="datetime-local"],
+.task-form textarea {
     padding: 11px 14px;
     background: var(--bg-input);
     border: 1px solid var(--border);
