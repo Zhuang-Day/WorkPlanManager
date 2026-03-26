@@ -48,6 +48,8 @@ def add():
         return "CSRF 驗證失敗", 403
 
     title = request.form.get("title")
+    status = request.form.get("status")
+    description = request.form.get("description")
     if not title:
         session["error"] = "title 不可為空"
         return redirect("/")
@@ -70,8 +72,8 @@ def add():
     conn, cursor = get_cursor()
     try:
         cursor.execute(
-            "INSERT INTO tasks (title, start_at, end_at) VALUES (%s, %s, %s);",
-            (title, start_at, end_at),
+            "INSERT INTO tasks (title, start_at, end_at, status,description) VALUES (%s, %s, %s, %s, %s);",
+            (title, start_at, end_at, status, description),
         )
         conn.commit()
     except Exception as e:

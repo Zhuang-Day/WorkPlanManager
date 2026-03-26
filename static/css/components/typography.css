@@ -1,26 +1,22 @@
+/* 主標題與副標題 */
 .page-title {
     font-size: 1.75rem;
-    /* 主標題大小 */
+    /* 桌機 */
     font-weight: 700;
-    /* 加粗，與任務標題對應 */
     color: var(--text-primary);
-    /* 主文字色 */
     margin-bottom: 8px;
-    /* 與副標間距 */
     line-height: 1.2;
 }
 
 .page-subtitle {
     font-size: 1rem;
-    /* 副標題大小 */
     font-weight: 500;
-    /* 中等字重 */
     color: var(--text-secondary);
     margin-bottom: 20px;
-    /* 與下方內容間距 */
     line-height: 1.4;
 }
 
+/* 卡片標題 */
 .card-title {
     font-weight: 600;
     font-size: 1rem;
@@ -29,7 +25,7 @@
     color: var(--text-primary);
 }
 
-
+/* 空訊息提示 */
 .empty-msg {
     padding: 20px 0;
     text-align: center;
@@ -47,6 +43,7 @@
     opacity: 0.5;
 }
 
+/* 日期標題 */
 .date-title {
     display: flex;
     justify-content: space-between;
@@ -56,6 +53,7 @@
     margin-bottom: 12px;
 }
 
+/* 小標題與側邊欄標題 */
 h1,
 h2,
 h3,
@@ -68,6 +66,7 @@ h4,
     text-transform: uppercase;
 }
 
+/* 標籤 */
 label,
 .form-label,
 .task-label {
@@ -78,4 +77,201 @@ label,
     letter-spacing: 0.08em;
     margin-bottom: 0;
     white-space: nowrap;
+}
+
+/* 桌機預設 */
+.task-sidebar .sidebar-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 表單元素響應式字體 */
+.task-sidebar input[type="text"],
+.task-sidebar input[type="date"],
+.task-sidebar input[type="number"],
+.task-sidebar select,
+.task-sidebar textarea {
+    font-size: 0.95rem;
+    /* 桌機預設 */
+}
+
+.progress-group input[type="number"],
+.progress-number-input {
+    width: 60px;
+    height: 24px;
+    padding: 0 6px;
+    font-family: inherit;
+    font-size: 14px;
+    /* 桌機字體 */
+    font-weight: normal;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-input);
+    outline: none;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.task-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-badge {
+    font-size: 0.7rem;
+    /* 桌機字體 */
+    font-weight: 500;
+    text-transform: capitalize;
+    color: white;
+    opacity: 0.95;
+}
+
+/* --- 手機與平板自動縮放字體 --- */
+@media (max-width: 1024px) {
+
+    /* 平板 */
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .empty-msg {
+        font-size: 0.8rem;
+    }
+
+    .empty-msg::before {
+        font-size: 2rem;
+    }
+
+    .date-title {
+        font-size: 0.7rem;
+    }
+
+    .task-time {
+        font-size: 0.7rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .sidebar-title {
+        font-size: 0.8rem;
+    }
+
+    label,
+    .form-label,
+    .task-label {
+        font-size: 0.65rem;
+    }
+
+    .task-sidebar input[type="text"],
+    .task-sidebar input[type="date"],
+    .task-sidebar input[type="number"],
+    .task-sidebar select,
+    .task-sidebar textarea {
+        font-size: 0.85rem;
+    }
+
+    .task-sidebar .sidebar-header h3 {
+        font-size: 1rem;
+    }
+
+    .progress-group input[type="number"],
+    .progress-number-input {
+        font-size: 12px;
+        width: 55px;
+        /* 可選，讓小螢幕不擠 */
+    }
+
+    .status-badge {
+        font-size: 0.6rem;
+        padding: 1.5px 7px;
+        /* 小螢幕稍微縮小內距 */
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* 手機 */
+    .page-title {
+        font-size: 1.25rem;
+    }
+
+    .page-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .card-title {
+        font-size: 0.85rem;
+    }
+
+    .empty-msg {
+        font-size: 0.75rem;
+    }
+
+    .empty-msg::before {
+        font-size: 1.8rem;
+    }
+
+    .date-title {
+        font-size: 0.65rem;
+    }
+
+    .task-time {
+        font-size: 0.65rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .sidebar-title {
+        font-size: 0.75rem;
+    }
+
+    label,
+    .form-label,
+    .task-label {
+        font-size: 0.6rem;
+    }
+
+    .task-sidebar input[type="text"],
+    .task-sidebar input[type="date"],
+    .task-sidebar input[type="number"],
+    .task-sidebar select,
+    .task-sidebar textarea {
+        font-size: 0.8rem;
+    }
+
+    .task-sidebar .sidebar-header h3 {
+        font-size: 0.9rem;
+    }
+
+    .progress-group input[type="number"],
+    .progress-number-input {
+        font-size: 11px;
+        width: 50px;
+        /* 小螢幕縮小寬度 */
+    }
+
+    .status-badge {
+        font-size: 0.55rem;
+        padding: 1px 6px;
+        /* 縮小內距 */
+    }
 }

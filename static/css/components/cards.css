@@ -14,31 +14,40 @@
 .task-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 16px;
-    padding: 12px;
-    border-radius: 8px;
+    gap: 12px;
+    /* 欄之間間距 */
+    padding: 16px;
+    background-color: var(--bg-task-column);
 }
 
 .task-column {
-    background: linear-gradient(to bottom, var(--bg-surface), var(--bg-task-column));
-    border: 1px solid var(--border);
-    /* 柔和邊框 */
     padding: 12px;
-    border-radius: 12px;
-    /* 圓角略增 */
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    box-shadow:
-        0 1px 3px rgba(141, 103, 72, 0.08),
-        /* 接觸感 */
-        0 4px 8px rgba(141, 103, 72, 0.05);
-    /* 浮起感 */
+    gap: 12px;
+    /* 僅在左側加分隔線（除了第一欄） */
+    border-left: 1px solid var(--border);
+}
+
+.task-column:first-child {
+    border-left: none;
+    /* 第一欄不需要左邊線 */
 }
 
 /* ══════════════════════════════════════
    TASK CARD
    ────────────────────────────────────── */
+.task-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0;
+    /* 不需要 gap，靠邊框區分 */
+    padding: 16px;
+    border-radius: 12px;
+    background-color: var(--bg-container);
+    /* 外框 */
+}
+
 .task-item {
     position: relative;
     display: flex;
@@ -47,14 +56,15 @@
     background: var(--bg-card);
     padding: 20px 22px;
     border-radius: var(--radius-card);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* 調淡邊框 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* 輕微陰影 */
     transition: all 0.25s ease;
     overflow: hidden;
 }
 
 .task-item::after {
-    content: '';
     position: absolute;
     left: 0;
     top: 16px;
@@ -70,7 +80,7 @@
     transform: translateY(-3px);
     background: var(--bg-card-hover);
     border-color: var(--accent-1-20);
-    box-shadow: var(--shadow-hover), 0 0 0 1px var(--accent-1-08);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--accent-1-08);
 }
 
 .task-item:hover::after {
@@ -83,11 +93,6 @@
     right: 8px;
     padding: 2px 8px;
     border-radius: 12px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    color: white;
-    opacity: 0.95;
 }
 
 .status-badge.todo {
@@ -111,7 +116,6 @@
 }
 
 .task-time {
-    font-size: 0.8rem;
     color: var(--text-muted);
     margin-bottom: 12px;
     display: flex;
@@ -126,7 +130,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 360px;
+    width: 50vw;
     height: 100vh;
     background: var(--bg-surface);
     box-shadow: var(--shadow-hover), 0 0 0 1px var(--accent-1-08);
@@ -152,7 +156,6 @@
 }
 
 .task-sidebar .sidebar-header h3 {
-    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
 }
@@ -184,7 +187,6 @@
     border-radius: var(--radius-input);
     margin-top: 4px;
     margin-bottom: 12px;
-    font-size: 0.95rem;
     background-color: #ffffff;
     color: #000000;
 }
@@ -222,7 +224,6 @@
     height: 24px;
     padding: 0 6px;
     font-family: inherit;
-    font-size: 14px;
     font-weight: normal;
     text-align: center;
     box-sizing: border-box;
