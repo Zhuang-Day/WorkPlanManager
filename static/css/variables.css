@@ -1,42 +1,89 @@
 /* ── CSS Variables ── */
 :root {
-    /* ── Background ── */
-    --bg-base: #f3ece1;
-    --bg-surface: #fefbf7;
-    --bg-card: #fefbf7;
-    --bg-card-hover: #f7f2e8;
-    --bg-input: #f4eee3;
+  /* ── Background ── */
+  --bg-base: #f3ece1;
+  /* 保留暖米色基調 */
+  --bg-surface: #fff9f2;
+  /* 輕微增亮，增加層次 */
+  --bg-card: #fff9f2;
+  --bg-card-hover: #f5eee2;
+  /* hover 明顯但柔和 */
+  --bg-input: #ffffff;
+  --bg-task-column: #f7f2e8;
+  /* 與卡片區分更明顯 */
 
-    /* ── Border ── */
-    --border: rgba(95, 65, 45, 0.15);
-    --border-focus: rgba(121, 85, 59, 0.6);
+  /* ── navbar ── */
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  /* 更清晰，保持透光感 */
 
-    /* ── Accent (Wood Tone) ── */
-    --accent-1: #8d6748;
-    --accent-2: #a17c5a;
-    --accent-hover: #b28c70;
+  /* ── Border ── */
+  --border: rgba(95, 65, 45, 0.15);
+  --border-focus: rgba(121, 85, 59, 0.7);
+  /* 聚焦時更醒目 */
 
-    /* Danger（保留暖紅，避免突兀） */
-    --accent-danger: #d9664a;
-    --accent-danger2: #c44c36;
+  /* ── Main Accent ── */
+  --accent-1: #7a4f32;
+  /* 深棕色，更有重量感 */
+  --accent-2: #a17c5a;
+  /* 保留原本次色 */
+  --accent-hover: #b28c70;
+  /* hover 保持亮化效果 */
 
-    /* ── Text ── */
-    --text-primary: #3e2c1c;
-    --text-secondary: #5a3e28;
-    --text-muted: #7b5e43;
+  /* Danger */
+  --accent-danger: #d94f3c;
+  /* 暖紅更明顯 */
+  --accent-danger2: #c44c36;
 
-    /* ── Radius ── */
-    --radius-card: 16px;
-    --radius-btn: 10px;
-    --radius-input: 10px;
+  /* ── Status ── */
+  --status-todo: #e79c91;
+  /* 紅色稍柔和 */
+  --status-doing: #e0bb4f;
+  --status-done: #6fbf73;
+  --status-pending: var(--accent-danger);
 
-    /* ── Shadow（暖色陰影） ── */
-    --shadow-card: 0 4px 20px rgba(60, 40, 20, 0.08);
-    --shadow-hover: 0 8px 28px rgba(60, 40, 20, 0.12);
-    --shadow-btn: 0 4px 14px rgba(121, 85, 59, 0.25);
+  /* ── 灰階 ── */
+  --gray-bg: #f4efef;
+  --gray-text: #bfbfbf;
+  /* 提升與背景對比 */
+  --gray-border: #dedad5;
 
-    /* ── Glow ── */
-    --glow-accent: 0 0 0 3px rgba(121, 85, 59, 0.15);
+  /* ── Text ── */
+  --text-primary: #3b2717;
+  /* 深棕，對比更明顯 */
+  --text-secondary: #5a3e28;
+  --text-muted: #7b5e43;
+  --text-btn: #ffffff;
+
+  /* ── Radius ── */
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  /* 按鈕圓角略增，柔和感更好 */
+  --radius-input: 10px;
+
+  /* ── Shadow ── */
+  --shadow-card: 0 6px 24px rgba(60, 40, 20, 0.08);
+  /* 微加深陰影 */
+  --shadow-hover: 0 10px 30px rgba(60, 40, 20, 0.12);
+  --shadow-btn: 0 4px 16px rgba(121, 85, 59, 0.25);
+
+  /* ── Glow ── */
+  --glow-accent: 0 0 0 3px rgba(121, 85, 59, 0.18);
+  /* 輕微加強發光感 */
+
+  /* 透明版本，用於邊框或陰影 */
+  --accent-1-20: rgba(122, 79, 50, 0.2);
+  --accent-1-08: rgba(122, 79, 50, 0.08);
+
+  /* 進度條漸層 */
+  --progress-start: var(--accent-1);
+  --progress-end: var(--accent-2);
+  --progress-shadow: rgba(122, 79, 50, 0.15);
+
+  /* slider */
+  --slider-track-fill: var(--accent-1);
+  --slider-track-bg: #efe5db;
+  /* 與背景形成柔和對比 */
+  --slider-thumb: var(--accent-1);
 }
 
 .logo-credit {

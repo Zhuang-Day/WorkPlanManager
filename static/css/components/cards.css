@@ -1,8 +1,6 @@
 /* ══════════════════════════════════════
-   TASK LIST CONTAINER
+   TASK LIST & CONTAINER
    ────────────────────────────────────── */
-
-/* 任務列表主容器 */
 .task-list {
     list-style: none;
     padding: 0;
@@ -11,12 +9,8 @@
     flex-direction: column;
     gap: 14px;
     min-height: 0;
-    /* 移除預設高度 */
-    margin-bottom: 0;
-    /* 移除額外間距 */
 }
 
-/* 多列任務卡片容器，自適應寬度 */
 .task-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -25,9 +19,8 @@
     border-radius: 8px;
 }
 
-/* 單欄任務列容器 */
 .task-column {
-    background-color: #fdf7ec;
+    background-color: var(--bg-task-column);
     padding: 12px;
     border-radius: 8px;
     display: flex;
@@ -38,9 +31,8 @@
 /* ══════════════════════════════════════
    TASK CARD
    ────────────────────────────────────── */
-
-/* 任務卡片基本樣式 */
 .task-item {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -50,43 +42,9 @@
     border: 1px solid var(--border);
     box-shadow: var(--shadow-card);
     transition: all 0.25s ease;
-    position: relative;
     overflow: hidden;
 }
 
-/* 右上角小橢圓標籤 */
-.status-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 2px 8px;
-    border-radius: 12px;
-    /* 橢圓形 */
-    font-size: 0.7rem;
-    /* 小巧 */
-    font-weight: 500;
-    text-transform: capitalize;
-    color: white;
-}
-
-/* 暖色系標籤 */
-.status-badge.todo {
-    background-color: #faaba3;
-}
-
-.status-badge.doing {
-    background-color: #f3c94b;
-}
-
-.status-badge.done {
-    background-color: #20ce29;
-}
-
-.status-badge.pending {
-    background-color: #ff4d4d;
-}
-
-/* 卡片左側漸變條 */
 .task-item::after {
     content: '';
     position: absolute;
@@ -100,28 +58,50 @@
     transition: opacity 0.25s ease;
 }
 
-/* 任務卡片 hover 效果，統一暖木色調 */
 .task-item:hover {
     transform: translateY(-3px);
     background: var(--bg-card-hover);
-    /* 保持柔和背景 */
-    border-color: rgba(141, 103, 72, 0.2);
-    /* accent-1 的透明度 */
-    box-shadow: var(--shadow-hover), 0 0 0 1px rgba(141, 103, 72, 0.08);
-    /* 暖色陰影 */
+    border-color: var(--accent-1-20);
+    box-shadow: var(--shadow-hover), 0 0 0 1px var(--accent-1-08);
 }
-
 
 .task-item:hover::after {
     opacity: 1;
 }
 
-/* 卡片內主要內容 */
+.status-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: white;
+    opacity: 0.95;
+}
+
+.status-badge.todo {
+    background-color: var(--status-todo);
+}
+
+.status-badge.doing {
+    background-color: var(--status-doing);
+}
+
+.status-badge.done {
+    background-color: var(--status-done);
+}
+
+.status-badge.pending {
+    background-color: var(--status-pending);
+}
+
 .task-content {
     flex: 1;
 }
 
-/* 時間 */
 .task-time {
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -131,7 +111,9 @@
     gap: 4px;
 }
 
-/* 右側任務側欄 */
+/* ══════════════════════════════════════
+   TASK SIDEBAR
+   ────────────────────────────────────── */
 .task-sidebar {
     position: fixed;
     top: 0;
@@ -139,7 +121,7 @@
     width: 360px;
     height: 100vh;
     background: var(--bg-surface);
-    box-shadow: -4px 0 24px rgba(60, 40, 20, 0.08);
+    box-shadow: var(--shadow-hover), 0 0 0 1px var(--accent-1-08);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -147,17 +129,13 @@
     padding: 20px;
     overflow-y: auto;
     border-left: 1px solid var(--border);
-
-    /* 初始隱藏在右側 */
     transform: translateX(100%);
 }
 
-/* 開啟狀態 */
 .task-sidebar.open {
     transform: translateX(0);
 }
 
-/* 標題與關閉按鈕 */
 .task-sidebar .sidebar-header {
     display: flex;
     justify-content: space-between;
@@ -187,7 +165,6 @@
     color: var(--accent-1);
 }
 
-/* 表單元素統一樣式 */
 .task-sidebar input[type="text"],
 .task-sidebar input[type="date"],
 .task-sidebar input[type="number"],
@@ -217,70 +194,90 @@
 }
 
 .task-sidebar .btn-primary:hover {
-    background: var(--accent-hover);
-    box-shadow: 0 4px 14px rgba(121, 85, 59, 0.3);
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-hover));
+    box-shadow: 0 4px 14px var(--shadow-btn), 0 0 0 3px var(--accent-1-08);
 }
 
-/* 容器用 flex */
+/* ══════════════════════════════════════
+   PROGRESS & SLIDER
+   ────────────────────────────────────── */
 .progress-group {
     display: flex;
     align-items: center;
-    /* 垂直置中 */
     gap: 8px;
-    /* 元素間距 */
+    flex-wrap: nowrap;
 }
 
-.progress-group input[type="number"] {
+.progress-group input[type="number"],
+.progress-number-input {
     width: 60px;
     height: 24px;
-    padding: 0;
-    line-height: 24px;
+    padding: 0 6px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
     text-align: center;
     box-sizing: border-box;
-    font-family: inherit;
-    /* 使用父元素字體 */
-    font-size: 14px;
-    /* 調整大小 */
-    font-weight: normal;
-    /* 可選，和頁面一致 */
-}
-
-#sidebar-progress-slider {
-    flex: 1;
-    height: 24px;
-    /* 統一高度 */
-}
-
-/* 數字輸入框 */
-#sidebar-progress-number {
-    width: 60px;
-    height: 24px;
-    /* 統一高度 */
-    padding: 0;
-    text-align: center;
-}
-
-/* 表單元素 */
-.task-sidebar input[type="text"],
-.task-sidebar input[type="date"],
-.task-sidebar input[type="number"],
-.task-sidebar select,
-.task-sidebar textarea {
-    width: 100%;
-    padding: 6px 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--gray-border);
     border-radius: var(--radius-input);
-    margin-top: 4px;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-    background-color: #ffffff;
-    /* 白底 */
-    color: #000000;
-    /* 黑字 */
+    outline: none;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* range slider */
-.task-sidebar input[type="range"] {
-    width: calc(100% - 70px);
-    vertical-align: middle;
+.progress-group input[type="number"]:focus,
+.progress-number-input:focus {
+    border-color: var(--accent-1);
+    box-shadow: var(--glow-accent);
+}
+
+/* slider 調整 */
+#sidebar-progress-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    /* 細軌道 */
+    border-radius: 6px;
+    background-color: var(--slider-track-bg);
+    /* 未完成灰色 */
+    outline: none;
+}
+
+#sidebar-progress-slider::-webkit-slider-runnable-track {
+    height: 100%;
+    border-radius: 6px;
+    background: transparent;
+    /* 由 JS 設定線性漸層 */
+}
+
+#sidebar-progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--slider-thumb);
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px;
+}
+
+#sidebar-progress-slider::-moz-range-track {
+    height: 8px;
+    border-radius: 6px;
+    background: var(--slider-track-bg);
+}
+
+#sidebar-progress-slider::-moz-range-progress {
+    height: 8px;
+    border-radius: 6px;
+    background: var(--slider-track-fill);
+}
+
+#sidebar-progress-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--slider-thumb);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
 }
