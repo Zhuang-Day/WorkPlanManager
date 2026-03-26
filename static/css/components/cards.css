@@ -20,12 +20,20 @@
 }
 
 .task-column {
-    background-color: var(--bg-task-column);
+    background: linear-gradient(to bottom, var(--bg-surface), var(--bg-task-column));
+    border: 1px solid var(--border);
+    /* 柔和邊框 */
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 12px;
+    /* 圓角略增 */
     display: flex;
     flex-direction: column;
     gap: 14px;
+    box-shadow:
+        0 1px 3px rgba(141, 103, 72, 0.08),
+        /* 接觸感 */
+        0 4px 8px rgba(141, 103, 72, 0.05);
+    /* 浮起感 */
 }
 
 /* ══════════════════════════════════════

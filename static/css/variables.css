@@ -1,16 +1,13 @@
 /* ── CSS Variables ── */
 :root {
   /* ── Background ── */
-  --bg-base: #f3ece1;
-  /* 保留暖米色基調 */
-  --bg-surface: #fff9f2;
-  /* 輕微增亮，增加層次 */
-  --bg-card: #fff9f2;
-  --bg-card-hover: #f5eee2;
+  --bg-base: #f9f5ef;
+  --bg-surface: #fffdf7;
+  --bg-card: #fffdf7;
+  --bg-card-hover: #fff7ed;
   /* hover 明顯但柔和 */
   --bg-input: #ffffff;
-  --bg-task-column: #f7f2e8;
-  /* 與卡片區分更明顯 */
+  --bg-task-column: #fff7eb;
 
   /* ── navbar ── */
   --navbar-bg: rgba(255, 255, 255, 0.9);
